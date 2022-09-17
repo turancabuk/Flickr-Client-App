@@ -14,6 +14,8 @@
 		5CB5780D28D62BBF00B4149C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CB5780B28D62BBF00B4149C /* LaunchScreen.storyboard */; };
 		5CB5781928D631D300B4149C /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB5781828D631D300B4149C /* PhotoTableViewCell.swift */; };
 		5CB5781B28D6336E00B4149C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB5781A28D6336E00B4149C /* ViewController.swift */; };
+		5CB5781E28D6373900B4149C /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB5781D28D6373900B4149C /* PhotoDetailViewController.swift */; };
+		5CB5782228D63E0300B4149C /* PhotoDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CB5782128D63E0300B4149C /* PhotoDetail.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		5CB5780E28D62BBF00B4149C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5CB5781828D631D300B4149C /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
 		5CB5781A28D6336E00B4149C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5CB5781D28D6373900B4149C /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
+		5CB5782128D63E0300B4149C /* PhotoDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoDetail.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,7 @@
 		5CB5781428D62BC600B4149C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				5CB5781C28D6371E00B4149C /* PhotoDetail */,
 				5CB5781628D62BFA00B4149C /* Recent Photos */,
 			);
 			path = Screens;
@@ -85,9 +90,8 @@
 		5CB5781628D62BFA00B4149C /* Recent Photos */ = {
 			isa = PBXGroup;
 			children = (
-				5CB5780628D62BBE00B4149C /* Main.storyboard */,
-				5CB5781A28D6336E00B4149C /* ViewController.swift */,
-				5CB5781828D631D300B4149C /* PhotoTableViewCell.swift */,
+				5CB5782028D6388A00B4149C /* Controller */,
+				5CB5781F28D6386600B4149C /* View */,
 			);
 			path = "Recent Photos";
 			sourceTree = "<group>";
@@ -100,6 +104,40 @@
 				5CB5780E28D62BBF00B4149C /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5CB5781C28D6371E00B4149C /* PhotoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5CB5782328D63F1100B4149C /* View */,
+				5CB5781D28D6373900B4149C /* PhotoDetailViewController.swift */,
+			);
+			path = PhotoDetail;
+			sourceTree = "<group>";
+		};
+		5CB5781F28D6386600B4149C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5CB5781828D631D300B4149C /* PhotoTableViewCell.swift */,
+				5CB5780628D62BBE00B4149C /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5CB5782028D6388A00B4149C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5CB5781A28D6336E00B4149C /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5CB5782328D63F1100B4149C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5CB5782128D63E0300B4149C /* PhotoDetail.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,6 +200,7 @@
 			files = (
 				5CB5780D28D62BBF00B4149C /* LaunchScreen.storyboard in Resources */,
 				5CB5780A28D62BBF00B4149C /* Assets.xcassets in Resources */,
+				5CB5782228D63E0300B4149C /* PhotoDetail.storyboard in Resources */,
 				5CB5780828D62BBE00B4149C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +215,7 @@
 				5CB5781928D631D300B4149C /* PhotoTableViewCell.swift in Sources */,
 				5CB5780128D62BBE00B4149C /* AppDelegate.swift in Sources */,
 				5CB5781B28D6336E00B4149C /* ViewController.swift in Sources */,
+				5CB5781E28D6373900B4149C /* PhotoDetailViewController.swift in Sources */,
 				5CB5780328D62BBE00B4149C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
