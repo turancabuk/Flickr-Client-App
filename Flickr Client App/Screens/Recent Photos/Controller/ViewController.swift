@@ -12,11 +12,14 @@ class ViewController: UITableViewController, UISearchResultsUpdating {
     
     private var response: PhotosResponse? {
         didSet{
-            tableView.reloadData()
-
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
-
+    
+    var selectedPhoto: Photo?
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,7 +39,7 @@ class ViewController: UITableViewController, UISearchResultsUpdating {
         navigationItem.searchController = search
     }
     private func fetchRecentPhotos(){
-        guard let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=94e3ba3b90a2cc129009b79dcd5371b5&format=json&nojsoncallback=1&extras=description,license,date_upload,date_taken,owner_name,icon_server,original_format,last_update,geo,tags,machine_tags,o_dims,views,media,path_alias,url_sq,url_t,url_s,url_q,url_m,url_n,url_z,url_c,url_l,url_o") else { return }
+        guard let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=4af2721c348c846a0090fb397209cdf1&format=json&nojsoncallback=1&extras=description,license,date_upload,date_taken,owner_name,icon_server,original_format,last_update,geo,tags,machine_tags,o_dims,views,media,path_alias,url_sq,url_t,url_s,url_q,url_m,url_n,url_z,url_c,url_l,url_o") else { return }
         
         let request = URLRequest(url: url)
         
@@ -52,8 +55,8 @@ class ViewController: UITableViewController, UISearchResultsUpdating {
             
         }.resume()
     }
-    private func searchPhotos(with: String){
-        guard let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=94e3ba3b90a2cc129009b79dcd5371b5&text=flower&format=json&nojsoncallback=1&extras=description,licence,date_upload,date_taken,owner_name,icon_server,original_format,last_update,geo,tags,machine_tags,o_dims,views,media,path_alias,url_sq,url_t,url_s,url_q,url_m,url_n,url_z,url_c,url_l,url_o&format=json&nojsoncallback=1") else { return }
+    private func searchPhotos(with text: String){
+        guard let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=4af2721c348c846a0090fb397209cdf1&text=\(text)&format=json&nojsoncallback=1&extras=description,license,date_upload,date_taken,owner_name,icon_server,original_format,last_update,geo,tags,machine_tags,o_dims,views,media,path_alias,url_sq,url_t,url_s,url_q,url_m,url_n,url_z,url_c,url_l,url_o") else { return }
         
         let request = URLRequest(url: url)
         
@@ -66,22 +69,6 @@ class ViewController: UITableViewController, UISearchResultsUpdating {
                 self.response = response
             }
         }.resume()
-    }
-    private func fetchImage(with url: String?, completion: @escaping (Data) -> Void){
-        if let urlString = url, let url = URL(string: urlString) {
-            let request = URLRequest(url: url)
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    debugPrint(error)
-                    return
-                }
-                if let data = data {
-                    DispatchQueue.main.async {
-                        completion(data)
-                    }
-                }
-            }.resume()
-        }
     }
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
@@ -105,14 +92,35 @@ class ViewController: UITableViewController, UISearchResultsUpdating {
         cell.ownerImageView.backgroundColor = .darkGray
         cell.ownerNameLabel.text = photo?.ownername
         
-       
+        if let iconServer = photo?.iconserver,
+           let iconFarm = photo?.iconfarm,
+           let nsId = photo?.owner,
+            NSString(string: iconServer).intValue > 0 {
+            NetworkManager.shared.fetchImage(with: "http://farm\(iconFarm).staticflickr.com/\(iconServer)/buddyicons/\(nsId).jpg") { data in
+                cell.ownerImageView.image = UIImage(data: data)
+            }
+        }else{
+            NetworkManager.shared.fetchImage(with: "https://www.flickr.com/images/buddyicon.gif") { data in
+                cell.ownerImageView.image = UIImage(data: data)
+            }
+        }
+        
+        NetworkManager.shared.fetchImage(with: photo?.urlN) { data in
+            cell.photoImageView.image = UIImage(data: data)
+        }
         
         cell.titleLabel.text = photo?.title
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        selectedPhoto = response?.photos?.photo?[indexPath.row]
         performSegue(withIdentifier: "detailSegue", sender: nil)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? PhotoDetailViewController{
+            viewController.photo = selectedPhoto
+        }
     }
   
     

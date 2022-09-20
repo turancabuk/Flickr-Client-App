@@ -19,6 +19,7 @@
 		5CB5782628D7ADED00B4149C /* PhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB5782528D7ADED00B4149C /* PhotosResponse.swift */; };
 		5CB5782828D7AE4100B4149C /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB5782728D7AE4100B4149C /* Photos.swift */; };
 		5CB5782A28D7B02500B4149C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB5782928D7B02500B4149C /* Photo.swift */; };
+		5CB5782F28D900E800B4149C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB5782E28D900E800B4149C /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		5CB5782528D7ADED00B4149C /* PhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosResponse.swift; sourceTree = "<group>"; };
 		5CB5782728D7AE4100B4149C /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		5CB5782928D7B02500B4149C /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		5CB5782E28D900E800B4149C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +89,8 @@
 		5CB5781528D62BD100B4149C /* App */ = {
 			isa = PBXGroup;
 			children = (
-				5CB5780028D62BBE00B4149C /* AppDelegate.swift */,
-				5CB5780228D62BBE00B4149C /* SceneDelegate.swift */,
+				5CB5782C28D8FFEA00B4149C /* Core */,
+				5CB5782B28D8FFCE00B4149C /* Delegate */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -155,6 +157,31 @@
 				5CB5782928D7B02500B4149C /* Photo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5CB5782B28D8FFCE00B4149C /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				5CB5780028D62BBE00B4149C /* AppDelegate.swift */,
+				5CB5780228D62BBE00B4149C /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		5CB5782C28D8FFEA00B4149C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5CB5782D28D8FFF600B4149C /* Networking */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5CB5782D28D8FFF600B4149C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				5CB5782E28D900E800B4149C /* NetworkManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CB5782F28D900E800B4149C /* NetworkManager.swift in Sources */,
 				5CB5782A28D7B02500B4149C /* Photo.swift in Sources */,
 				5CB5781928D631D300B4149C /* PhotoTableViewCell.swift in Sources */,
 				5CB5780128D62BBE00B4149C /* AppDelegate.swift in Sources */,
